@@ -6,18 +6,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <style>
-/* -------------------- 밝은 다크모드 테마 -------------------- */
+/* ==========================================
+   기본 테마(Theme 1: Light Blue)
+========================================== */
 :root {
     --bg: #f1f5f9;
     --bg-soft: #e2e8f0;
     --card: #ffffff;
     --accent: #2563eb;
-    --accent-soft: rgba(37, 99, 235, 0.12);
+    --accent-soft: rgba(37, 99, 235, 0.15);
     --text: #1e293b;
     --text-soft: #475569;
     --border: #cbd5e1;
 }
 
+/* ==========================================
+   Theme 2: Deep Dark
+========================================== */
+.theme-dark {
+    --bg: #0f172a;
+    --bg-soft: #1e293b;
+    --card: #1e293b;
+    --accent: #38bdf8;
+    --accent-soft: rgba(56, 189, 248, 0.15);
+    --text: #e2e8f0;
+    --text-soft: #94a3b8;
+    --border: #334155;
+}
+
+/* ==========================================
+   Theme 3: Mint Aqua
+========================================== */
+.theme-mint {
+    --bg: #e6fffa;
+    --bg-soft: #ccfbf1;
+    --card: #ffffff;
+    --accent: #0d9488;
+    --accent-soft: rgba(13, 148, 136, 0.15);
+    --text: #134e4a;
+    --text-soft: #155e75;
+    --border: #99f6e4;
+}
+
+/* ==========================================
+   Base Styles
+========================================== */
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
@@ -25,22 +58,31 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.7;
+    transition: background 0.4s ease, color 0.4s ease;
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
 }
 
-/* -------------------- Layout -------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .wrapper {
     max-width: 1100px;
     margin: 0 auto;
     padding: 2.8rem 1.5rem 5rem;
 }
 
+/* ==========================================
+   Header
+========================================== */
 header {
     padding-bottom: 2rem;
     border-bottom: 1px solid var(--border);
     margin-bottom: 2.8rem;
 }
 
-/* -------------------- Header -------------------- */
 .header-main {
     display:flex;
     justify-content: space-between;
@@ -51,14 +93,12 @@ header {
 .title-group h1 {
     font-size: clamp(2.2rem, 3vw, 2.8rem);
     font-weight: 800;
-    letter-spacing: -0.5px;
 }
 
 .title-group h2 {
     font-size: 1rem;
     color: var(--accent);
-    margin-top: 0.35rem;
-    letter-spacing: 0.08em;
+    margin-top: 0.4rem;
 }
 
 .badges {
@@ -74,81 +114,133 @@ header {
     border-radius:999px;
     background: var(--accent-soft);
     color: var(--accent);
-    border:1px solid rgba(37,99,235,0.22);
 }
 
-/* -------------------- Contact -------------------- */
-.contact {
-    font-size: 0.9rem;
-    text-align: right;
-    color: var(--text-soft);
+/* ==========================================
+   Navbar
+========================================== */
+.nav {
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.75rem;
+    margin-top: 1.2rem;
 }
-.contact a { color: var(--accent); text-decoration: none; }
-.contact a:hover { text-decoration: underline; }
 
-/* -------------------- Sections -------------------- */
-.section { margin-bottom:2.8rem; }
+.nav a {
+    padding:0.45rem 0.9rem;
+    border-radius:999px;
+    background: var(--bg-soft);
+    border:1px solid var(--border);
+    font-size:0.87rem;
+    text-decoration:none;
+    color:var(--text-soft);
+    transition:0.25s;
+}
+
+.nav a:hover {
+    border-color:var(--accent);
+    color:var(--accent);
+}
+
+/* Theme Button */
+.theme-btn {
+    padding:0.45rem 0.9rem;
+    border-radius:999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border:1px solid var(--accent);
+    font-size:0.87rem;
+    cursor:pointer;
+    transition:0.25s;
+}
+.theme-btn:hover {
+    background: var(--accent);
+    color:white;
+}
+
+/* ==========================================
+   Sections
+========================================== */
+.section {
+    margin-bottom:2.8rem;
+    opacity:0;
+    transform:translateY(20px);
+    transition:0.6s ease;
+}
+.section.visible {
+    opacity:1;
+    transform:translateY(0);
+}
 
 .section-title {
     font-size: 1.3rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin-bottom:1rem;
 }
 
 .section-sub {
-    margin-bottom:0.8rem;
     font-size:0.95rem;
     color:var(--text-soft);
+    margin-bottom:0.8rem;
 }
 
-/* -------------------- Cards -------------------- */
+/* ==========================================
+   Cards
+========================================== */
 .card {
     background: var(--card);
-    padding: 1.4rem 1.6rem;
-    border-radius: 0.9rem;
+    padding:1.4rem 1.6rem;
+    border-radius:0.9rem;
     border:1px solid var(--border);
     transition:0.25s ease;
 }
-
 .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transform:translateY(-4px);
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
 }
 
-/* -------------------- Tag -------------------- */
+/* ==========================================
+   Tags
+========================================== */
 .tag-row { display:flex; flex-wrap:wrap; gap:0.35rem; margin-top:0.4rem; }
 .tag {
-    font-size:0.75rem;
     padding:0.25rem 0.55rem;
     border-radius:999px;
-    background: var(--accent-soft);
-    color: var(--accent);
+    background:var(--accent-soft);
+    color:var(--accent);
+    font-size:0.75rem;
 }
 
-/* -------------------- Lists -------------------- */
+/* ==========================================
+   Lists
+========================================== */
 ul { list-style:none; margin-top:0.6rem; }
 ul li {
-    margin-bottom:0.35rem;
     padding-left:1rem;
     position:relative;
     font-size:0.92rem;
-    color: var(--text-soft);
+    color:var(--text-soft);
+    margin-bottom:0.35rem;
 }
 ul li::before {
     content:"•";
     position:absolute;
     left:0;
-    color: var(--accent);
+    color:var(--accent);
 }
 
-/* -------------------- Grid -------------------- */
+/* ==========================================
+   Grid
+========================================== */
 .card-grid {
     display:grid;
     grid-template-columns:1.4fr 1fr;
     gap:1rem;
 }
 
-/* -------------------- Footer -------------------- */
+/* ==========================================
+   Footer
+========================================== */
 .footer {
     margin-top:3rem;
     padding-top:1rem;
@@ -160,10 +252,13 @@ ul li::before {
     flex-wrap:wrap;
 }
 
-/* -------------------- Responsive -------------------- */
+/* ==========================================
+   Responsive
+========================================== */
 @media(max-width:768px) {
     .card-grid { grid-template-columns:1fr; }
-    .contact { text-align:left; }
+    .nav { gap:0.4rem; }
+    .nav a, .theme-btn { padding:0.35rem 0.7rem; font-size:0.82rem; }
 }
 </style>
 </head>
@@ -186,14 +281,14 @@ ul li::before {
             </div>
         </div>
 
-        <div class="contact">
+        <div class="contact" style="text-align:right;">
             <div>📧 baej5600@gmail.com</div>
-            <div>GitHub: 
+            <div>GitHub:
                 <a href="https://github.com/baej5600-cpu" target="_blank">
                     github.com/baej5600-cpu
                 </a>
             </div>
-            <div>Notion: 
+            <div>Notion:
                 <a href="https://www.notion.so/1f93479df154801393acfe0fe1b4d4b8?source=copy_link" target="_blank">
                     포트폴리오 링크
                 </a>
@@ -201,9 +296,22 @@ ul li::before {
         </div>
 
     </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#awards">Awards</a>
+        <a href="#strengths">Strengths</a>
+
+        <!-- Theme Button -->
+        <button class="theme-btn" onclick="changeTheme()">Theme</button>
+    </nav>
 </header>
 
-<!-- -------------------- About -------------------- -->
+<!-- ================= ABOUT ================= -->
 <section id="about" class="section">
     <h2 class="section-title">About Me</h2>
     <div class="section-sub">
@@ -211,7 +319,7 @@ ul li::before {
     </div>
 
     <div class="card">
-        <p style="margin-bottom:0.4rem; font-size:0.95rem; color:var(--text-soft);">
+        <p style="font-size:0.95rem; color:var(--text-soft); margin-bottom:0.6rem;">
             Spring Boot, React, MySQL 기반 웹 서비스 개발과  
             OCR · LLM 등 AI 활용 프로젝트 경험을 통해  
             문제 해결 능력과 구조적 시스템 설계 역량을 키워 왔습니다.
@@ -219,38 +327,34 @@ ul li::before {
 
         <ul>
             <li>백엔드 중심 웹 서비스 설계 및 운영 경험</li>
-            <li>정확한 DB 설계 및 ERD 구조화 역량</li>
-            <li>OCR·LLM AI 기술 실 서비스 적용 경험</li>
-            <li>기획–프론트–백 전체 흐름 이해를 통한 협업 능력</li>
+            <li>정확한 DB 설계 및 ERD 구조화</li>
+            <li>OCR·LLM AI 기술 실 서비스 적용</li>
+            <li>기획–프론트–백 전체 흐름 이해와 협업 능력</li>
         </ul>
     </div>
 </section>
 
-<!-- -------------------- Skills -------------------- -->
+<!-- ================= SKILLS ================= -->
 <section id="skills" class="section">
     <h2 class="section-title">Skills</h2>
-
     <div class="card">
         <ul>
-            <li><b>Backend:</b> Java 17/21, Spring Boot, JPA, Hibernate, Security, JWT</li>
+            <li><b>Backend:</b> Java, Spring Boot, JPA, Hibernate, Security, JWT</li>
             <li><b>Frontend:</b> React, Vite, Tailwind, HTML/CSS/JS</li>
-            <li><b>Database:</b> MySQL, SQL, 데이터 모델링, ERDCloud, DBML</li>
+            <li><b>Database:</b> MySQL, SQL, ERDCloud, DBML, 모델링</li>
             <li><b>AI:</b> Python, Pandas, YOLO, OCR, LLM(OpenAI)</li>
-            <li><b>Infra / Tools:</b> Naver Cloud, GitHub, WSL2, IntelliJ, VS Code</li>
+            <li><b>Infra/Tools:</b> Naver Cloud, GitHub, WSL2, IntelliJ, VS Code</li>
         </ul>
     </div>
 </section>
 
-<!-- -------------------- Projects -------------------- -->
+<!-- ================= PROJECTS ================= -->
 <section id="projects" class="section">
     <h2 class="section-title">Projects</h2>
 
     <div class="card-grid">
         <div class="card">
             <h3>올사람 – 소상공인 노쇼 방지 플랫폼</h3>
-            <p style="font-size:0.85rem; color:var(--text-soft); margin-bottom:0.6rem;">
-                팀 프로젝트 · 백엔드 & DB 총괄
-            </p>
 
             <div class="tag-row">
                 <span class="tag">Spring Boot</span>
@@ -263,7 +367,7 @@ ul li::before {
             <ul>
                 <li>백엔드 전체 아키텍처 설계 및 API 구축</li>
                 <li>ERD 및 데이터 구조 설계 총괄</li>
-                <li>Naver Cloud OCR로 메뉴 자동 등록 구현</li>
+                <li>Naver OCR로 메뉴 자동 등록 구현</li>
                 <li>LLM 기반 노쇼 탐지 모델 개발</li>
                 <li>사업주/고객 대시보드 & 웨이팅 구축</li>
             </ul>
@@ -273,29 +377,23 @@ ul li::before {
             <h3>프로젝트 성과</h3>
             <ul>
                 <li>AI 기반 위험도 분석 기능 제공</li>
-                <li>OCR 자동화로 메뉴 관리 효율화</li>
+                <li>OCR 자동화 메뉴 등록 효율 극대화</li>
                 <li>예약·결제·환불 전체 서비스 플로우 구성</li>
-                <li><b>스마트인재개발원 최우수상 수상</b></li>
+                <li><b>스마트인재개발원 최우수상</b> 수상</li>
             </ul>
         </div>
     </div>
 
-    <div style="height:1rem;"></div>
-
-    <div class="card-grid">
+    <div class="card-grid" style="margin-top:1rem;">
         <div class="card">
             <h3>YOLOv8 랜드마크 인식 플랫폼</h3>
-            <p style="font-size:0.85rem; color:var(--text-soft); margin-bottom:0.6rem;">
-                개인 프로젝트 · AI + Web
-            </p>
-
             <div class="tag-row">
                 <span class="tag">YOLOv8</span>
                 <span class="tag">Python</span>
             </div>
 
             <ul>
-                <li>YOLO 모델 학습 및 이미지 파이프라인 구축</li>
+                <li>YOLO 모델 학습 및 이미지 파이프라인 구성</li>
                 <li>랜드마크 정보 자동 수집 스크립트 제작</li>
                 <li>웹 UI를 통한 결과 시각화</li>
             </ul>
@@ -304,25 +402,14 @@ ul li::before {
         <div class="card">
             <h3>프로젝트 성과</h3>
             <ul>
-                <li>이미지 분석 기반 정보 제공 기능 설계</li>
-                <li><b>스마트인재개발원 장려상 수상</b></li>
-            </ul>
-        </div>
-    </div>
-
-    <div style="margin-top:1rem;">
-        <div class="card">
-            <h3>그 외 프로젝트</h3>
-            <ul>
-                <li>REST API 학습용 미니 프로젝트</li>
-                <li>DB 모델링 및 SQL 실습</li>
-                <li>AI 실험 및 프로토타입 구축</li>
+                <li>이미지 분석 기반 정보 제공 기능 구현</li>
+                <li><b>스마트인재개발원 장려상</b> 수상</li>
             </ul>
         </div>
     </div>
 </section>
 
-<!-- -------------------- Experience -------------------- -->
+<!-- ================= EXPERIENCE ================= -->
 <section id="experience" class="section">
     <h2 class="section-title">Experience & Education</h2>
 
@@ -337,10 +424,9 @@ ul li::before {
     </div>
 </section>
 
-<!-- -------------------- Awards -------------------- -->
+<!-- ================= AWARDS ================= -->
 <section id="awards" class="section">
     <h2 class="section-title">Awards</h2>
-
     <div class="card">
         <ul>
             <li><b>최우수상</b> — 올사람 프로젝트</li>
@@ -349,10 +435,9 @@ ul li::before {
     </div>
 </section>
 
-<!-- -------------------- Strengths -------------------- -->
+<!-- ================= STRENGTHS ================= -->
 <section id="strengths" class="section">
     <h2 class="section-title">Strengths</h2>
-
     <div class="card">
         <ul>
             <li>문제 해결 능력 — 에러 분석 및 구조적 해결</li>
@@ -372,6 +457,37 @@ ul li::before {
 </div>
 
 <script>
+// ======================= Scroll Animation =======================
+const sections = document.querySelectorAll(".section");
+function reveal() {
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if(top < window.innerHeight - 120) sec.classList.add("visible");
+  });
+}
+window.addEventListener("scroll", reveal);
+reveal();
+
+// ======================= Theme Switching =======================
+let themeIndex = localStorage.getItem("themeIndex")
+  ? parseInt(localStorage.getItem("themeIndex"))
+  : 0;
+
+const themes = ["", "theme-dark", "theme-mint"];
+
+function applyTheme() {
+  document.body.className = themes[themeIndex];
+  localStorage.setItem("themeIndex", themeIndex);
+}
+
+function changeTheme() {
+  themeIndex = (themeIndex + 1) % themes.length;
+  applyTheme();
+}
+
+applyTheme();
+
+// ======================= Year Update =======================
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
