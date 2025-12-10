@@ -1,498 +1,372 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<meta charset="UTF-8" />
-	<title>배준호 | Developer Portfolio</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<style>
-		:root {
-			--bg: #0f172a;
-			--bg-soft: #020617;
-			--card: #020617;
-			--accent: #38bdf8;
-			--accent-soft: rgba(56, 189, 248, 0.1);
-			--text: #e5e7eb;
-			--text-soft: #9ca3af;
-			--border: #1e293b;
-		}
-		* {
-			box-sizing: border-box;
-			margin: 0;
-			padding: 0;
-		}
-		body {
-			font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-				sans-serif;
-			background: radial-gradient(circle at top, #1e293b 0, #020617 55%, #000 100%);
-			color: var(--text);
-			line-height: 1.6;
-		}
-		a {
-			color: var(--accent);
-			text-decoration: none;
-		}
-		a:hover {
-			text-decoration: underline;
-		}
-		.wrapper {
-			max-width: 1024px;
-			margin: 0 auto;
-			padding: 2.5rem 1.5rem 4rem;
-		}
-		header {
-			display: flex;
-			flex-direction: column;
-			gap: 1.5rem;
-			margin-bottom: 2.5rem;
-			padding-bottom: 1.5rem;
-			border-bottom: 1px solid var(--border);
-		}
-		.header-main {
-			display: flex;
-			justify-content: space-between;
-			align-items: flex-start;
-			gap: 1.5rem;
-			flex-wrap: wrap;
-		}
-		.title-group h1 {
-			font-size: clamp(2rem, 3vw, 2.6rem);
-			font-weight: 700;
-		}
-		.title-group h2 {
-			font-size: 0.95rem;
-			color: var(--accent);
-			font-weight: 500;
-			margin-top: 0.35rem;
-			text-transform: uppercase;
-			letter-spacing: 0.12em;
-		}
-		.badges {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.4rem;
-			margin-top: 0.8rem;
-		}
-		.badge {
-			font-size: 0.7rem;
-			padding: 0.25rem 0.6rem;
-			border-radius: 999px;
-			border: 1px solid var(--accent-soft);
-			background: rgba(15, 23, 42, 0.8);
-			color: var(--text-soft);
-		}
-		.contact {
-			font-size: 0.85rem;
-			color: var(--text-soft);
-			text-align: right;
-		}
-		.contact div + div {
-			margin-top: 0.2rem;
-		}
-		.nav {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.75rem;
-			font-size: 0.85rem;
-		}
-		.nav a {
-			padding: 0.3rem 0.7rem;
-			border-radius: 999px;
-			background: rgba(15, 23, 42, 0.8);
-			border: 1px solid var(--border);
-		}
-		.nav a:hover {
-			border-color: var(--accent);
-			text-decoration: none;
-		}
-		.section {
-			margin-bottom: 2.2rem;
-		}
-		.section-title {
-			font-size: 1.1rem;
-			font-weight: 600;
-			margin-bottom: 0.9rem;
-			display: inline-flex;
-			align-items: center;
-			gap: 0.4rem;
-		}
-		.section-title span.icon {
-			font-size: 1.1rem;
-		}
-		.section-sub {
-			font-size: 0.9rem;
-			color: var(--text-soft);
-			margin-bottom: 0.8rem;
-		}
-		.card-grid {
-			display: grid;
-			grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-			gap: 1rem;
-		}
-		.card {
-			background: rgba(15, 23, 42, 0.9);
-			border-radius: 0.8rem;
-			border: 1px solid var(--border);
-			padding: 1rem 1.1rem;
-		}
-		.card h3 {
-			font-size: 0.98rem;
-			margin-bottom: 0.3rem;
-			font-weight: 600;
-		}
-		.card h4 {
-			font-size: 0.85rem;
-			color: var(--accent);
-			font-weight: 500;
-			margin-bottom: 0.35rem;
-		}
-		.tag-row {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.35rem;
-			margin-top: 0.4rem;
-		}
-		.tag {
-			font-size: 0.7rem;
-			padding: 0.15rem 0.45rem;
-			border-radius: 999px;
-			background: var(--accent-soft);
-			color: var(--accent);
-		}
-		ul {
-			list-style: none;
-			margin-top: 0.4rem;
-		}
-		ul li {
-			font-size: 0.85rem;
-			color: var(--text-soft);
-			margin-bottom: 0.25rem;
-			position: relative;
-			padding-left: 0.9rem;
-		}
-		ul li::before {
-			content: "•";
-			position: absolute;
-			left: 0;
-			color: var(--accent);
-		}
-		.skill-columns {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-			gap: 0.8rem;
-		}
-		.skill-title {
-			font-size: 0.8rem;
-			color: var(--text-soft);
-			text-transform: uppercase;
-			letter-spacing: 0.08em;
-			margin-bottom: 0.25rem;
-		}
-		.skill-list {
-			font-size: 0.83rem;
-			color: var(--text);
-		}
-		.pill-row {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.4rem;
-			margin-top: 0.3rem;
-		}
-		.pill {
-			font-size: 0.75rem;
-			padding: 0.2rem 0.55rem;
-			border-radius: 999px;
-			background: rgba(15, 23, 42, 0.9);
-			border: 1px solid var(--border);
-			color: var(--text-soft);
-		}
-		.highlight {
-			color: var(--accent);
-			font-weight: 500;
-		}
-		.footer {
-			margin-top: 2rem;
-			padding-top: 1rem;
-			border-top: 1px solid var(--border);
-			font-size: 0.8rem;
-			color: var(--text-soft);
-			display: flex;
-			justify-content: space-between;
-			gap: 1rem;
-			flex-wrap: wrap;
-		}
-		@media (max-width: 768px) {
-			.card-grid {
-				grid-template-columns: minmax(0, 1fr);
-			}
-			.contact {
-				text-align: left;
-			}
-		}
-	</style>
+<meta charset="UTF-8" />
+<title>배준호 | Developer Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+/* -------------------- GLOBAL THEME -------------------- */
+:root {
+    --bg: #0f172a;
+    --bg-soft: #1e293b;
+    --card: #0f172a;
+    --accent: #38bdf8;
+    --accent-soft: rgba(56,189,248,0.15);
+    --text: #e2e8f0;
+    --text-soft: #94a3b8;
+    --border: #1e293b;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: "Inter", system-ui, sans-serif;
+    background: radial-gradient(circle at top, #1e293b 0%, #020617 60%, #000 100%);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* -------------------- LAYOUT -------------------- */
+.wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 1.4rem 5rem;
+}
+
+/* -------------------- FLOATING NAVBAR -------------------- */
+.navbar {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15,23,42,0.85);
+    backdrop-filter: blur(10px);
+    padding: 0.7rem 1.4rem;
+    border-radius: 999px;
+    border: 1px solid #1e293b;
+    display: flex;
+    gap: 0.75rem;
+    z-index: 999;
+    transition: 0.25s ease;
+}
+.navbar a {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    color: var(--text-soft);
+}
+.navbar a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* -------------------- HEADER -------------------- */
+header {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2.5rem;
+}
+
+.header-main {
+    display:flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+    gap:1.5rem;
+}
+
+.title-group h1 {
+    font-size: clamp(2.2rem, 3vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.title-group h2 {
+    font-size: 0.95rem;
+    color: var(--accent);
+    margin-top: 0.25rem;
+    letter-spacing: 0.12em;
+}
+
+.badges {
+    display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.8rem;
+}
+
+.badge {
+    font-size:0.7rem;
+    padding:0.25rem 0.6rem;
+    border-radius:999px;
+    background: rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+/* -------------------- CARDS -------------------- */
+.card {
+    background: rgba(15,23,42,0.7);
+    padding:1.4rem 1.6rem;
+    border-radius:0.9rem;
+    border:1px solid var(--border);
+    transition:0.3s ease;
+    box-shadow: 0 0 0 transparent;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 20px rgba(56,189,248,0.15);
+}
+
+/* -------------------- SECTIONS -------------------- */
+.section {
+    margin-bottom: 2.6rem;
+}
+
+.section-title {
+    font-size:1.25rem;
+    font-weight:600;
+    margin-bottom: 0.8rem;
+    display:flex;
+    align-items:center;
+    gap:0.4rem;
+}
+
+.section-sub {
+    font-size:0.9rem;
+    color: var(--text-soft);
+    margin-bottom: 0.7rem;
+}
+
+/* -------------------- PROJECT GRID -------------------- */
+.card-grid {
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:1.1rem;
+}
+
+.tag-row { display:flex; flex-wrap:wrap; gap:0.35rem; margin-top:0.4rem; }
+.tag {
+    font-size:0.7rem;
+    padding:0.2rem 0.5rem;
+    border-radius:999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+}
+
+/* -------------------- UL -------------------- */
+ul{ list-style:none; margin-top:0.5rem; }
+ul li{
+    font-size:0.85rem;
+    margin-bottom:0.3rem;
+    padding-left:1rem;
+    position:relative;
+    color: var(--text-soft);
+}
+ul li::before {
+    content:"•";
+    position:absolute;
+    left:0;
+    color: var(--accent);
+}
+
+/* -------------------- FOOTER -------------------- */
+.footer {
+    margin-top:3rem;
+    padding-top:1rem;
+    border-top:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    font-size:0.8rem;
+    flex-wrap:wrap;
+    color: var(--text-soft);
+}
+
+/* -------------------- RESPONSIVE -------------------- */
+@media (max-width:768px) {
+    .card-grid { grid-template-columns:1fr; }
+    .navbar { bottom:15px; }
+}
+</style>
 </head>
+
 <body>
-	<div class="wrapper">
-		<header>
-			<div class="header-main">
-				<div class="title-group">
-					<h1>배준호</h1>
-					<h2>AI · Backend · Database · Web Fullstack Developer</h2>
-					<div class="badges">
-						<span class="badge">Spring Boot &amp; React</span>
-						<span class="badge">MySQL · ERD 설계</span>
-						<span class="badge">OCR · LLM · AI 활용</span>
-						<span class="badge">협업 &amp; 문서화</span>
-					</div>
-				</div>
-				<div class="contact">
-					<div>📧 Email: <span class="highlight">your-email@example.com</span></div>
-					<div>💼 GitHub: <a href="#" target="_blank">github.com/your-id</a></div>
-					<div>📎 Notion: <a href="#" target="_blank">포트폴리오 링크</a></div>
-				</div>
-			</div>
-			<nav class="nav">
-				<a href="#about">About</a>
-				<a href="#skills">Skills</a>
-				<a href="#projects">Projects</a>
-				<a href="#experience">Experience</a>
-				<a href="#awards">Awards</a>
-				<a href="#strengths">Strengths</a>
-			</nav>
-		</header>
 
-		<section id="about" class="section">
-			<h2 class="section-title">
-				<span class="icon">📌</span> About Me
-			</h2>
-			<div class="section-sub">
-				꾸준함과 책임감을 가장 중요한 가치로 삼고 성장하는
-				<strong>백엔드 중심 풀스택 개발자</strong>입니다.
-			</div>
-			<div class="card">
-				<p style="font-size:0.9rem; color:var(--text-soft); margin-bottom:0.4rem;">
-					Spring Boot, React, MySQL 기반 <strong>웹 서비스 개발 경험</strong>과
-					OCR·LLM·AI 분석 등 <strong>AI 활용 프로젝트</strong>를 통해
-					<strong>문제 해결 능력</strong>과 <strong>구조적 시스템 설계</strong>를 강점으로
-					키워 왔습니다.
-				</p>
-				<ul style="margin-top:0.6rem;">
-					<li>백엔드 중심의 웹 서비스 설계·구현 및 운영 경험</li>
-					<li>정확한 DB 설계와 ERD 구조화를 통한 안정적인 데이터 구조 확보</li>
-					<li>OCR·LLM 등 AI 기술을 실 서비스에 적용한 프로젝트 경험</li>
-					<li>협업과 문서화를 통해 서비스 완성도를 높이는 개발자</li>
-				</ul>
-			</div>
-		</section>
+<!-- FLOATING NAVIGATION -->
+<nav class="navbar">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#awards">Awards</a>
+    <a href="#strengths">Strengths</a>
+</nav>
 
-		<section id="skills" class="section">
-			<h2 class="section-title">
-				<span class="icon">🛠</span> Skills
-			</h2>
-			<div class="card">
-				<div class="skill-columns">
-					<div>
-						<div class="skill-title">Backend</div>
-						<div class="skill-list">
-							Java 17/21, Spring Boot, JPA, Hibernate,<br />
-							REST API, Spring Security, JWT, Gradle, Lombok
-						</div>
-					</div>
-					<div>
-						<div class="skill-title">Frontend</div>
-						<div class="skill-list">
-							React, Vite, HTML, CSS, JavaScript,<br />
-							Tailwind CSS, Lucide Icons
-						</div>
-					</div>
-					<div>
-						<div class="skill-title">Database</div>
-						<div class="skill-list">
-							MySQL, 데이터 모델링, SQL,<br />
-							ERD 설계 (ERDCloud, DBML, PlantUML), 더미 데이터 생성
-						</div>
-					</div>
-					<div>
-						<div class="skill-title">AI / Data</div>
-						<div class="skill-list">
-							Python, Pandas, scikit-learn,<br />
-							YOLO 기반 이미지 인식, Naver Cloud OCR, OpenAI API
-						</div>
-					</div>
-					<div>
-						<div class="skill-title">Infra / Tools</div>
-						<div class="skill-list">
-							Naver Cloud Platform, Object Storage,<br />
-							Git / GitHub, WSL2, IntelliJ, VS Code
-						</div>
-					</div>
-				</div>
-				<div class="pill-row">
-					<span class="pill">클린 코드 지향</span>
-					<span class="pill">API 설계</span>
-					<span class="pill">ERD &amp; 설계 문서화</span>
-					<span class="pill">협업 &amp; 코드리뷰</span>
-				</div>
-			</div>
-		</section>
+<div class="wrapper">
+<header>
+    <div class="header-main">
+        <div class="title-group">
+            <h1>배준호</h1>
+            <h2>AI · Backend · Database · Web Fullstack Developer</h2>
 
-		<section id="projects" class="section">
-			<h2 class="section-title">
-				<span class="icon">🚀</span> Projects
-			</h2>
-			<div class="card-grid">
-				<!-- Project 1 -->
-				<div class="card">
-					<h3>올사람 – 소상공인 노쇼 방지 플랫폼</h3>
-					<h4>팀 프로젝트 · 백엔드 &amp; DB 총괄</h4>
-					<div class="tag-row">
-					            <span class="tag">Spring Boot</span>
-					            <span class="tag">React</span>
-					            <span class="tag">MySQL</span>
-					            <span class="tag">Naver Cloud OCR</span>
-					            <span class="tag">OpenAI API</span>
-					</div>
-					<p style="font-size:0.85rem; color:var(--text-soft); margin-top:0.6rem;">
-						노쇼로 어려움을 겪는 소상공인을 위해
-						<strong>AI 사기 탐지 · OCR 메뉴 자동 등록 · 웨이팅 시스템</strong>을
-						통합한 플랫폼입니다.
-					</p>
-					<ul>
-						<li>Spring Boot 기반 백엔드 전반 개발 및 API 설계</li>
-						<li>ERD 및 DB 구조 설계 총괄, 데이터 흐름 정의</li>
-						<li>Naver Cloud OCR 연동을 통한 메뉴 자동 등록 기능 구현</li>
-						<li>LLM 기반 노쇼 위험도 분석 모델 설계 및 서비스 반영</li>
-						<li>React 프론트엔드와 API 규약 협의 및 협업</li>
-					</ul>
-				</div>
+            <div class="badges">
+                <span class="badge">Spring Boot & React</span>
+                <span class="badge">MySQL · ERD 설계</span>
+                <span class="badge">OCR · LLM · AI 활용</span>
+                <span class="badge">협업 & 문서화</span>
+            </div>
+        </div>
 
-				<div class="card">
-					<h3>주요 기능 &amp; 성과</h3>
-					<h4>Features &amp; Outcomes</h4>
-					<ul>
-						<li>AI 기반 노쇼 위험도 분석 및 패턴 탐지</li>
-						<li>OCR 기반 메뉴 자동 등록 및 관리 효율화</li>
-						<li>사업주/고객 전용 대시보드, 실시간 웨이팅 시스템 구현</li>
-						<li>예약·결제·환불 플로우 설계로 서비스 전체 흐름 구성</li>
-						<li>
-							<strong>스마트인재개발원 최우수상 수상</strong> 및 실제 음식점 데이터로
-							모델 검증
-						</li>
-					</ul>
-				</div>
-			</div>
+        <div class="contact" style="text-align:right;">
+            <div>📧 <b>baej5600@gmail.com</b></div>
+            <div>💼 GitHub: <a href="#" target="_blank">github.com/your-id</a></div>
+            <div>📎 Notion: <a href="#" target="_blank">포트폴리오 링크</a></div>
+        </div>
+    </div>
+</header>
 
-			<div style="height:1rem;"></div>
+<!-- -------------------- ABOUT -------------------- -->
+<section id="about" class="section">
+    <h2 class="section-title">📌 About Me</h2>
+    <div class="section-sub">
+        꾸준함과 책임감을 가치로 삼고 성장하는 <strong>백엔드 중심 풀스택 개발자</strong>입니다.
+    </div>
 
-			<div class="card-grid">
-				<!-- Project 2 -->
-				<div class="card">
-					<h3>YOLOv8 랜드마크 인식 &amp; 정보 제공 플랫폼</h3>
-					<h4>개인 프로젝트 · AI + Web</h4>
-					<div class="tag-row">
-						<span class="tag">YOLOv8</span>
-						<span class="tag">Python</span>
-						<span class="tag">HTML/CSS</span>
-					</div>
-					<p style="font-size:0.85rem; color:var(--text-soft); margin-top:0.6rem;">
-						사용자가 업로드한 사진을 AI가 분석하여
-						<strong>랜드마크를 인식</strong>하고, 배경 설명과 여행 팁을 제공하는
-						서비스입니다.
-					</p>
-					<ul>
-						<li>YOLOv8 모델 학습 및 이미지 전처리 파이프라인 구현</li>
-						<li>랜드마크 정보 수집 및 자동화 스크립트 작성</li>
-						<li>모델 출력 결과를 직관적으로 보여주는 웹 UI 구성</li>
-					</ul>
-				</div>
+    <div class="card">
+        <p style="font-size:0.92rem; color:var(--text-soft); margin-bottom:0.4rem;">
+            Spring Boot, React, MySQL 기반 <strong>웹 서비스 개발</strong>과
+            OCR·LLM·AI 분석 등 <strong>AI 활용 프로젝트</strong> 경험을 통해  
+            <strong>문제 해결 능력</strong>과 <strong>구조적 시스템 설계 역량</strong>을 키워 왔습니다.
+        </p>
 
-				<div class="card">
-					<h3>주요 기능 &amp; 성과</h3>
-					<h4>Features &amp; Outcomes</h4>
-					<ul>
-						<li>랜드마크 이미지 인식 및 결과 기반 정보 제공</li>
-						<li>장소 배경 설명, 운영 시간, 여행 팁 등 부가 정보 표시</li>
-						<li>
-							<strong>스마트인재개발원 장려상 수상</strong> 및 이미지 기반 정보 요약 서비스
-							설계 역량 강화
-						</li>
-					</ul>
-				</div>
-			</div>
+        <ul>
+            <li>백엔드 중심 웹 서비스 설계·구현 및 운영 경험</li>
+            <li>정확한 DB 설계 및 ERD 구조화 역량</li>
+            <li>OCR·LLM 등 AI 기술 실 서비스 적용 경험</li>
+            <li>기획 → 프론트 → 백엔드까지 흐름 이해 및 협업 능력</li>
+        </ul>
+    </div>
+</section>
 
-			<div style="margin-top:1rem;">
-				<div class="card">
-					<h3>기타 프로젝트</h3>
-					<ul>
-						<li>REST API 학습용 미니 프로젝트</li>
-						<li>DB 모델링 및 ERD 실습 프로젝트</li>
-						<li>AI 실험 및 프로토타입 정리 프로젝트 등</li>
-					</ul>
-				</div>
-			</div>
-		</section>
+<!-- -------------------- SKILLS -------------------- -->
+<section id="skills" class="section">
+    <h2 class="section-title">🛠 Skills</h2>
 
-		<section id="experience" class="section">
-			<h2 class="section-title">
-				<span class="icon">🗂</span> Experience &amp; Education
-			</h2>
-			<div class="card">
-				<h3>스마트인재개발원 — AI 기반 Fullstack 과정 (6개월)</h3>
-				<ul>
-					<li>Spring Boot / React 기반 풀스택 웹 서비스 개발</li>
-					<li>관계형 DB 설계 및 ERD·모델링 실습</li>
-					<li>AI 모델 실습 및 LLM 활용 프로젝트 수행</li>
-					<li>팀 단위 협업 프로젝트 2회, Git 기반 협업 및 형상 관리</li>
-				</ul>
-			</div>
-		</section>
+    <div class="card">
+        <ul>
+            <li><b>Backend:</b> Java 17/21, Spring Boot, JPA, Hibernate, Security, JWT</li>
+            <li><b>Frontend:</b> React, Vite, Tailwind, HTML/CSS/JS</li>
+            <li><b>Database:</b> MySQL, ERDCloud, DBML, SQL, 모델링</li>
+            <li><b>AI:</b> Python, Pandas, YOLO, OCR, LLM(OpenAI)</li>
+            <li><b>Infra:</b> Naver Cloud, Git/GitHub, WSL2, IntelliJ</li>
+        </ul>
+    </div>
+</section>
 
-		<section id="awards" class="section">
-			<h2 class="section-title">
-				<span class="icon">🧬</span> Awards
-			</h2>
-			<div class="card">
-				<ul>
-					<li><strong>최우수상</strong> — 올사람 (소상공인 노쇼 방지 플랫폼)</li>
-					<li><strong>장려상</strong> — YOLOv8 랜드마크 인식 플랫폼</li>
-				</ul>
-			</div>
-		</section>
+<!-- -------------------- PROJECTS -------------------- -->
+<section id="projects" class="section">
+    <h2 class="section-title">🚀 Projects</h2>
 
-		<section id="strengths" class="section">
-			<h2 class="section-title">
-				<span class="icon">🧱</span> Strengths
-			</h2>
-			<div class="card">
-				<ul>
-					<li>에러 분석과 원인 추적에 강한 <strong>문제 해결 능력</strong></li>
-					<li>
-						복잡한 서비스 요구사항을 명확한 테이블 구조로 표현하는
-						<strong>DB 설계 역량</strong>
-					</li>
-					<li>
-						OCR·LLM·ML 모델을 실제 서비스 흐름에 녹여내는
-						<strong>AI 활용 능력</strong>
-					</li>
-					<li>
-						기획–디자인–프론트–백 전 과정을 이해하고 조율하는
-						<strong>협업 능력</strong>
-					</li>
-					<li>
-						PPT, Notion, ERD, UML 등을 통해 서비스 구조를 명확히 설명하는
-						<strong>문서화 능력</strong>
-					</li>
-				</ul>
-			</div>
-		</section>
+    <div class="card-grid">
+        <div class="card">
+            <h3>올사람 – 소상공인 노쇼 방지 플랫폼</h3>
+            <h4>백엔드 & DB 총괄 · 팀 프로젝트</h4>
+            <div class="tag-row">
+                <span class="tag">Spring Boot</span><span class="tag">React</span>
+                <span class="tag">MySQL</span><span class="tag">OCR</span><span class="tag">LLM</span>
+            </div>
+            <ul>
+                <li>Spring Boot 기반 백엔드 아키텍처 전체 구성</li>
+                <li>ERD 및 데이터 흐름 설계 총괄</li>
+                <li>Naver Cloud OCR로 메뉴 자동 등록 구현</li>
+                <li>LLM 기반 노쇼 사기 탐지 모델 설계</li>
+                <li>사업주/고객 대시보드 및 웨이팅 시스템 구축</li>
+            </ul>
+        </div>
 
-		<footer class="footer">
-			<div>© <span id="year"></span> Bae Junho. All rights reserved.</div>
-			<div>Built with HTML &amp; CSS</div>
-		</footer>
-	</div>
+        <div class="card">
+            <h3>성과</h3>
+            <ul>
+                <li>AI 기반 위험도 분석 기능 구축</li>
+                <li>OCR 자동 처리로 메뉴 등록 시간 단축</li>
+                <li>예약/결제/환불 전체 프로세스 구성</li>
+                <li><strong>스마트인재개발원 최우수상 수상</strong></li>
+            </ul>
+        </div>
+    </div>
 
-	<script>
-		document.getElementById("year").textContent = new Date().getFullYear();
-	</script>
+    <div style="height:1rem;"></div>
+
+    <div class="card-grid">
+        <div class="card">
+            <h3>YOLOv8 랜드마크 인식 플랫폼</h3>
+            <h4>개인 프로젝트 · AI + Web</h4>
+            <div class="tag-row"><span class="tag">YOLOv8</span><span class="tag">Python</span></div>
+            <ul>
+                <li>YOLO 모델 학습 및 이미지 파이프라인 구성</li>
+                <li>랜드마크 데이터 자동 수집 스크립트 제작</li>
+                <li>웹 UI로 인식 결과 시각화</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>성과</h3>
+            <ul>
+                <li>이미지 기반 정보 제공 서비스 설계</li>
+                <li><strong>스마트인재개발원 장려상 수상</strong></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- -------------------- EXPERIENCE -------------------- -->
+<section id="experience" class="section">
+    <h2 class="section-title">🗂 Experience & Education</h2>
+    <div class="card">
+        <h3>스마트인재개발원 — Fullstack 과정</h3>
+        <ul>
+            <li>Spring Boot / React 웹 서비스 개발</li>
+            <li>DB 설계 및 모델링 실습</li>
+            <li>AI 모델 및 LLM 기반 프로젝트 수행</li>
+            <li>팀 협업 프로젝트 2회 진행</li>
+        </ul>
+    </div>
+</section>
+
+<!-- -------------------- AWARDS -------------------- -->
+<section id="awards" class="section">
+    <h2 class="section-title">🧬 Awards</h2>
+    <div class="card">
+        <ul>
+            <li><strong>최우수상</strong> — 올사람 프로젝트</li>
+            <li><strong>장려상</strong> — YOLOv8 랜드마크 프로젝트</li>
+        </ul>
+    </div>
+</section>
+
+<!-- -------------------- STRENGTHS -------------------- -->
+<section id="strengths" class="section">
+    <h2 class="section-title">🧱 Strengths</h2>
+    <div class="card">
+        <ul>
+            <li><strong>문제 해결 능력</strong> — 에러 분석 및 구조적 해결</li>
+            <li><strong>DB 설계 역량</strong> — 복잡한 요구사항을 구조화</li>
+            <li><strong>AI 활용 능력</strong> — OCR·LLM 실 서비스 적용</li>
+            <li><strong>협업 능력</strong> — 프론트·백 이해 및 조율 가능</li>
+            <li><strong>문서화 능력</strong> — ERD, UML, PPT로 명확한 설명</li>
+        </ul>
+    </div>
+</section>
+
+<footer class="footer">
+    <div>© <span id="year"></span> Bae Junho</div>
+    <div>Built with HTML & CSS</div>
+</footer>
+</div>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
